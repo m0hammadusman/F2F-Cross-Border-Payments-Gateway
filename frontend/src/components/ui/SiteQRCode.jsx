@@ -2,8 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import QRCode from 'qrcode';
 import brandIcon from '../../assets/brand/icon.svg';
 
-export const SITE_URL = 'https://f2f-uzh.vercel.app/';
-export const APP_URL = 'https://f2f-uzh.vercel.app/app';
+const BASE_DOMAIN = 'https://f2f-uzh-bbib-26.vercel.app';
+export const SITE_URL = (typeof window !== 'undefined' && window.location?.origin && !window.location.origin.includes('localhost'))
+  ? `${window.location.origin}/`
+  : `${BASE_DOMAIN}/`;
+
+export const APP_URL = (typeof window !== 'undefined' && window.location?.origin && !window.location.origin.includes('localhost'))
+  ? `${window.location.origin}/app`
+  : `${BASE_DOMAIN}/app`;
 
 /**
  * A scannable QR code with the brand icon centered on top. Lets the
