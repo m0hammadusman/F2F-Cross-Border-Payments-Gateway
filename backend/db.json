@@ -328,6 +328,76 @@
         "reviewedAt": "2026-09-09T10:00:30.881Z",
         "reviewedBy": "AUTOMATED_SYSTEM"
       }
+    },
+    "TXN-41Y5VD3": {
+      "id": "TXN-41Y5VD3",
+      "senderName": "Ana Costa",
+      "senderEmail": "ana.costa@example.com",
+      "senderCountry": "PT",
+      "recipientName": "Davit Sargsyan",
+      "recipientCountry": "AM",
+      "amount": 250,
+      "currency": "EUR",
+      "receivingCurrency": "AMD",
+      "recipientAmount": 266.32,
+      "fee": 4.99,
+      "exchangeRate": 1.0869565217391304,
+      "payoutMethod": "bank_transfer",
+      "purpose": "Family Support",
+      "status": "completed",
+      "createdAt": "2026-09-09T11:02:16.273Z",
+      "completedAt": "2026-09-09T11:02:16.273Z",
+      "estimatedDelivery": "1-2 business days",
+      "hederaTxRef": "0.0.9489660@1788951726.387258552",
+      "hederaTopicId": "0.0.10435971",
+      "hederaSequenceNumber": "9",
+      "complianceStatus": "verified",
+      "settlementStatus": "settled",
+      "payoutStatus": "paid",
+      "complianceAnchor": {
+        "sequenceNumber": "7",
+        "recordHash": "sha256:2eec245321232e1728a76835634fcf804d5519174e3b1b34d5ac93dc74d55ddc",
+        "hashscanTxUrl": "https://hashscan.io/testnet/transaction/0.0.9489660@1788951710.883019400"
+      },
+      "quoteAnchor": {
+        "sequenceNumber": "8",
+        "recordHash": "sha256:d8c5f7b8ed187faeb4bc4cfe59ff9768bd6467219bc86dae86979dd7103b5515",
+        "hashscanTxUrl": "https://hashscan.io/testnet/transaction/0.0.9489660@1788951714.070035665"
+      },
+      "routingAnchor": {
+        "sequenceNumber": "9",
+        "recordHash": "sha256:1aa2fc934f16f17880c7c434c868dcb2ee408c95ad367c0d86b77897c87461de",
+        "hashscanTxUrl": "https://hashscan.io/testnet/transaction/0.0.9489660@1788951719.857288700"
+      },
+      "completionAnchor": null,
+      "settlementChain": "hedera",
+      "settlementBridgeMethod": "native",
+      "settlementReason": "Partner supports Hedera and $250 is within the safe threshold ($20000), given ~$26,617,246 in checked Hedera stablecoin liquidity depth.",
+      "settlementHashscanUrl": "https://hashscan.io/testnet/transaction/0.0.9489660@1788951726.387258552",
+      "settlementNote": null,
+      "complianceRecord": {
+        "recordId": "CMP-TXN-41Y5VD3",
+        "transferRef": "19180651bc60185623ad62be",
+        "provider": "AUTOMATED_SYSTEM",
+        "checkType": "KYC_AML_SANCTIONS",
+        "outcome": "PASSED",
+        "checkedAt": "2026-09-09T11:01:57.898Z",
+        "transactionId": "TXN-41Y5VD3",
+        "senderName": "Ana Costa",
+        "senderEmail": "ana.costa@example.com",
+        "senderCountry": "PT",
+        "recipientName": "Davit Sargsyan",
+        "recipientCountry": "AM",
+        "amount": 250,
+        "currency": "EUR",
+        "purpose": "Family Support",
+        "kycStatus": "VERIFIED",
+        "amlStatus": "CLEARED",
+        "sanctionsCheck": "PASSED",
+        "riskScore": "LOW",
+        "reviewedAt": "2026-09-09T11:01:57.898Z",
+        "reviewedBy": "AUTOMATED_SYSTEM"
+      }
     }
   },
   "communityPosts": []
