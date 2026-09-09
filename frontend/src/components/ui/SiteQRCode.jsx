@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import QRCode from 'qrcode';
 import brandIcon from '../../assets/brand/icon.svg';
 
-const BASE_DOMAIN = 'https://f2f-uzh-bbib-26.vercel.app';
+const BASE_DOMAIN = 'https://f2f-uzh-ddib-26.vercel.app';
 export const SITE_URL = (typeof window !== 'undefined' && window.location?.origin && !window.location.origin.includes('localhost'))
   ? `${window.location.origin}/`
   : `${BASE_DOMAIN}/`;
