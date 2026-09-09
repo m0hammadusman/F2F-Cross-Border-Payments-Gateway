@@ -12,21 +12,25 @@ export default function AppHome() {
 
   useEffect(() => {
     let active = true;
-    // Real data (now persisted in MongoDB, see backend/db/store.mjs)
-    // is the source of truth. Local storage is only a fallback for
-    // when the backend can't be reached, so the screen doesn't just
-    // go blank -- not the primary source any more.
+    const fallbackLocal = () => {
+      const all = Object.values(getAllTransactions())
+        .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+        .slice(0, 4);
+      setRecent(Array.isArray(all) ? all : []);
+    };
+
     transferService.listTransfers()
       .then((txs) => {
         if (!active) return;
-        setRecent((txs || []).slice(0, 4));
+        if (Array.isArray(txs)) {
+          setRecent(txs.slice(0, 4));
+        } else {
+          fallbackLocal();
+        }
       })
       .catch(() => {
         if (!active) return;
-        const all = Object.values(getAllTransactions())
-          .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
-          .slice(0, 4);
-        setRecent(all);
+        fallbackLocal();
       });
     return () => { active = false; };
   }, []);
@@ -92,7 +96,7 @@ export default function AppHome() {
         <button onClick={() => navigate('/app/transfers')} className="text-brand-500 text-xs font-semibold">See all</button>
       </div>
 
-      {recent.length === 0 ? (
+      {!Array.isArray(recent) || recent.length === 0 ? (
         <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm p-6 text-center">
           <p className="text-sm text-ink-muted">No transfers yet. Try sending one from the demo.</p>
         </div>

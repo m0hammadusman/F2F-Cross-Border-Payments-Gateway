@@ -12,7 +12,10 @@ export default function AppCommunity() {
   const [success, setSuccess] = useState(false);
 
   const loadPosts = () => {
-    communityService.listPosts().then(setPosts).catch(() => setPosts([])).finally(() => setLoading(false));
+    communityService.listPosts()
+      .then((data) => setPosts(Array.isArray(data) ? data : []))
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
   };
   useEffect(() => { loadPosts(); }, []);
 
@@ -63,7 +66,7 @@ export default function AppCommunity() {
       <p className="text-[13px] font-bold text-ink mb-2.5">Recent posts</p>
       {loading ? (
         <p className="text-xs text-ink-muted">Loading...</p>
-      ) : posts.length === 0 ? (
+      ) : !Array.isArray(posts) || posts.length === 0 ? (
         <div className="bg-surface border border-hairline rounded-2xl shadow-sm p-5 text-center">
           <p className="text-xs text-ink-muted">No posts yet.</p>
         </div>

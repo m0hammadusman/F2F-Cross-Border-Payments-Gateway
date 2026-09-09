@@ -11,14 +11,25 @@ export default function AppTransfers() {
 
   useEffect(() => {
     let active = true;
+    const fallbackLocal = () => {
+      const all = Object.values(getAllTransactions()).sort(
+        (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+      );
+      setTransfers(Array.isArray(all) ? all : []);
+    };
+
     transferService.listTransfers()
-      .then((txs) => { if (active) setTransfers(txs || []); })
+      .then((txs) => {
+        if (!active) return;
+        if (Array.isArray(txs)) {
+          setTransfers(txs);
+        } else {
+          fallbackLocal();
+        }
+      })
       .catch(() => {
         if (!active) return;
-        const all = Object.values(getAllTransactions()).sort(
-          (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-        );
-        setTransfers(all);
+        fallbackLocal();
       });
     return () => { active = false; };
   }, []);
@@ -37,7 +48,7 @@ export default function AppTransfers() {
 
       <p className="px-5 pb-2 text-[13px] font-bold text-ink">All transfers</p>
 
-      {transfers.length === 0 ? (
+      {!Array.isArray(transfers) || transfers.length === 0 ? (
         <div className="mx-5 mb-6 bg-surface border border-hairline rounded-2xl shadow-sm p-6 text-center">
           <p className="text-sm text-ink-muted">Nothing here yet, real transfers you complete will show up in this list.</p>
         </div>

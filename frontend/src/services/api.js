@@ -18,7 +18,12 @@ apiClient.interceptors.request.use(
 );
 
 apiClient.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    if (typeof response.data === 'string' && (response.data.includes('<!doctype') || response.data.includes('<html'))) {
+      return Promise.reject(new Error('Endpoint returned HTML (offline or not found)'));
+    }
+    return response.data;
+  },
   (error) => {
     const message = error.response?.data?.error || error.response?.data?.message || error.message || 'An error occurred';
     return Promise.reject(new Error(message));
